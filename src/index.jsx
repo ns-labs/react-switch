@@ -217,9 +217,7 @@ class ReactSwitch extends Component {
       handleDiameter,
       borderStyle,
       borderWidth,
-      borderColor,
-      offBorderColor,
-      onBorderColor, // just to filter this prop out
+      borderColor, // just to filter this prop out
       ...rest
     } = this.props;
 
@@ -254,8 +252,6 @@ class ReactSwitch extends Component {
         this.$uncheckedPos,
         offColor,
         onColor,
-        offBorderColor,
-        onBorderColor
       ),
       borderRadius:
         typeof borderRadius === "number" ? borderRadius : height / 2,
@@ -452,8 +448,6 @@ ReactSwitch.propTypes = {
   borderStyle: PropTypes.string,
   borderWidth: PropTypes.number,
   borderColor: hexColorPropType,
-  offBorderColor: hexColorPropType,
-  onBorderColor: hexColorPropType
 };
 
 ReactSwitch.defaultProps = {
@@ -471,8 +465,6 @@ ReactSwitch.defaultProps = {
   borderStyle: "solid",
   borderWidth: 1,
   borderColor: "#FFF",
-  offBorderColor: "#C0C9D5",
-  onBorderColor: '#FFF'
 };
 
 export default ReactSwitch;
