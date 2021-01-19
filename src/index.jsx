@@ -60,7 +60,8 @@ class ReactSwitch extends Component {
     this.$inputRef.focus();
     this.setState({
       $startX: clientX,
-      $hasOutline: true,
+      // $hasOutline: true,
+      hasOutline: false,
       $dragStartingTime: Date.now()
     });
   }
@@ -171,7 +172,8 @@ class ReactSwitch extends Component {
   }
 
   $setHasOutline() {
-    this.setState({ $hasOutline: true });
+    // this.setState({ $hasOutline: true });
+    this.setState({ $hasOutline: false });
   }
 
   $unsetHasOutline() {
@@ -314,7 +316,8 @@ class ReactSwitch extends Component {
       transform: `translateX(${$pos}px)`,
       top: Math.max(0, (height - this.$handleDiameter) / 2),
       outline: 0,
-      boxShadow: $hasOutline ? activeBoxShadow : boxShadow,
+      // boxShadow: $hasOutline ? activeBoxShadow : boxShadow,
+      boxShadow: boxShadow,
       border: 0,
       WebkitTransition: $isDragging
         ? null
@@ -416,7 +419,8 @@ class ReactSwitch extends Component {
           {...rest}
           /* anything below should NOT get overriden by ...rest */
           ref={this.$getInputRef}
-          onFocus={this.$setHasOutline}
+          // onFocus={this.$setHasOutline}
+          onFocus={this.$unsetHasOutline}
           onBlur={this.$unsetHasOutline}
           onKeyUp={this.$onKeyUp}
           onChange={this.$onInputChange}
