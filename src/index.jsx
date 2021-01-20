@@ -468,7 +468,7 @@ ReactSwitch.defaultProps = {
   width: 56,
   borderStyle: "solid",
   borderWidth: 0,
-  borderColor: "#FFF",
+  borderColor: "#0BC7E0",
 };
 
 export default ReactSwitch;
