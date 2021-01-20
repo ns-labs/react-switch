@@ -139,6 +139,28 @@ export interface ReactSwitchProps {
    * Defaults to undefined.
    */
   id?: string;
+  
+   /**
+   * The borderStyle of switch.
+   *
+   * Defaults to solid.
+   */
+  borderStyle,
+
+   /**
+   * The borderWidth of switch.
+   *
+   * Defaults to 1.
+   */
+  borderWidth,
+
+   /**
+   * The borderColor of switch. Only accepts 3 or 6 digit hex colors, e.g., #080, #45abcd.
+   *
+   * Defaults to #FFF.
+   */
+  borderColor,
+
 }
 
 type Omit<T, U> = Pick<T, Exclude<keyof T, U>>;

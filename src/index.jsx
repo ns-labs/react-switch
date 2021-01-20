@@ -60,7 +60,8 @@ class ReactSwitch extends Component {
     this.$inputRef.focus();
     this.setState({
       $startX: clientX,
-      $hasOutline: true,
+      // $hasOutline: true,
+      hasOutline: false,
       $dragStartingTime: Date.now()
     });
   }
@@ -171,7 +172,8 @@ class ReactSwitch extends Component {
   }
 
   $setHasOutline() {
-    this.setState({ $hasOutline: true });
+    // this.setState({ $hasOutline: true });
+    this.setState({ $hasOutline: false });
   }
 
   $unsetHasOutline() {
@@ -214,7 +216,10 @@ class ReactSwitch extends Component {
       height,
       width,
       borderRadius,
-      handleDiameter, // just to filter this prop out
+      handleDiameter,
+      borderStyle,
+      borderWidth,
+      borderColor, // just to filter this prop out
       ...rest
     } = this.props;
 
@@ -248,14 +253,17 @@ class ReactSwitch extends Component {
         this.$checkedPos,
         this.$uncheckedPos,
         offColor,
-        onColor
+        onColor,
       ),
       borderRadius:
         typeof borderRadius === "number" ? borderRadius : height / 2,
       cursor: disabled ? "default" : "pointer",
       WebkitTransition: $isDragging ? null : "background 0.25s",
       MozTransition: $isDragging ? null : "background 0.25s",
-      transition: $isDragging ? null : "background 0.25s"
+      transition: $isDragging ? null : "background 0.25s",
+      borderStyle: borderStyle,
+      borderWidth: borderWidth,
+      borderColor: borderColor,
     };
 
     const checkedIconStyle = {
@@ -308,7 +316,8 @@ class ReactSwitch extends Component {
       transform: `translateX(${$pos}px)`,
       top: Math.max(0, (height - this.$handleDiameter) / 2),
       outline: 0,
-      boxShadow: $hasOutline ? activeBoxShadow : boxShadow,
+      // boxShadow: $hasOutline ? activeBoxShadow : boxShadow,
+      boxShadow: boxShadow,
       border: 0,
       WebkitTransition: $isDragging
         ? null
@@ -410,7 +419,8 @@ class ReactSwitch extends Component {
           {...rest}
           /* anything below should NOT get overriden by ...rest */
           ref={this.$getInputRef}
-          onFocus={this.$setHasOutline}
+          // onFocus={this.$setHasOutline}
+          onFocus={this.$unsetHasOutline}
           onBlur={this.$unsetHasOutline}
           onKeyUp={this.$onKeyUp}
           onChange={this.$onInputChange}
@@ -438,7 +448,10 @@ ReactSwitch.propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   id: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  borderStyle: PropTypes.string,
+  borderWidth: PropTypes.number,
+  borderColor: hexColorPropType,
 };
 
 ReactSwitch.defaultProps = {
@@ -452,7 +465,10 @@ ReactSwitch.defaultProps = {
   boxShadow: null,
   activeBoxShadow: "0 0 2px 3px #3bf",
   height: 28,
-  width: 56
+  width: 56,
+  borderStyle: "solid",
+  borderWidth: 0,
+  borderColor: "#0BC7E0",
 };
 
 export default ReactSwitch;
